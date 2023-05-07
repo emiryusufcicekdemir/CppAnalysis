@@ -1,0 +1,24 @@
+generate: Rastgele bir dizi oluşturur. Her eleman, MAX_W değeriyle sınırlanmış rastgele bir sayıdır.
+function1: Diziyi sıralar (küçükten büyüğe).
+function2: Dizi üzerinde bir işlem yapar ve bir sonuç döndürür. İşlem, dizinin ardışık alt dizilerinin toplamlarını hesaplar ve en büyük toplamı bulur. Bu toplamı, alt dizilerin sayısına böler ve sonucu döndürür.
+function3: İki boyutlu bir graf matrisini alır ve Floyd-Warshall algoritmasını kullanarak matris üzerinde en kısa yol hesaplamalarını yapar.
+zaman karmaşıklığını adım adım hesaplayalım:
+
+generate fonksiyonu: Sabit bir zaman karmaşıklığı vardır ve O(1)'dir.
+function1 fonksiyonu: İç içe iki döngü kullanarak sıralama işlemi gerçekleştirir. Her elemanın doğru konumunu bulmak için tüm diğer elemanlarla karşılaştırma yapar. Bu nedenle, n elemanlı bir dizide her bir elemanı n-1 elemanla karşılaştırır, yani toplam karşılaştırma sayısı (n-1) + (n-2) + ... + 2 + 1 = n*(n-1)/2'dir. Bu durumda, fonksiyonun zaman karmaşıklığı O(n^2) olacaktır.
+function2 fonksiyonu: Tek bir döngü kullanır ve her adımda sabit işlemler yapar. Bu nedenle, fonksiyonun zaman karmaşıklığı O(n) olacaktır.
+function3 fonksiyonu: İç içe üç döngü kullanır. İlk iki döngü, matrisin her elemanını ziyaret ederken üçüncü döngü, en kısa yolu hesaplamak için diğer elemanlarla karşılaştırma yapar. Bu durumda, fonksiyonun zaman karmaşıklığı O(n^3) olacaktır.
+print1, print2, print3 fonksiyonları: Dizi veya matrisin tüm elemanlarını yazdırmak için iki iç içe döngü kullanır. Bu durumda, fonksiyonların zaman karmaşıklığı O(n^2) olacaktır.
+Sonuç olarak zaman karmaşıklığı O(n^3) olur.
+
+Öneri 1: function1 fonksiyonunun sıralama algoritmasını değiştirmek. Bubble Sort yerine daha verimli bir sıralama algoritması kullanabilirsiniz, örneğin Quick Sort veya Merge Sort gibi algoritmalar. Bu algoritmaların zaman karmaşıklığı O(n log n) olduğundan daha hızlı çalışacaktır.
+
+Öneri 2: function2 fonksiyonunun optimize edilmesi. Mevcut kodda her bir alt dizi toplamı için bir iç döngü kullanıyorsunuz. Bunun yerine, Kadane's Algorithm gibi tek bir döngü ile maksimum alt dizi toplamını bulan bir algoritma kullanabilirsiniz. Bu şekilde zaman karmaşıklığını O(n) olarak iyileştirebilirsiniz.
+
+Öneri 3: function3 fonksiyonunun optimize edilmesi. Mevcut kodda Floyd-Warshall algoritması kullanılıyor, ancak bu algoritma tüm çiftler arasındaki en kısa yol hesaplamalarını yaparken, aslında sadece t değerine göre daha küçük olan yolları bulmak istediğinizi görebiliriz. Bu durumda, daha spesifik bir algoritma kullanarak performansı iyileştirebilirsiniz. Örneğin, Dijkstra algoritması ile t değerine göre daha küçük olan yolları bulabilirsiniz. Bu değişiklikle zaman karmaşıklığını O(n^2 log n) veya O(n^2 + m log m) olarak iyileştirebilirsiniz (m: graf üzerindeki kenar sayısı).
+
+Öneri 4: function3 fonksiyonunda Floyd-Warshall yerine Dijkstra algoritması kullanmıştık. Ancak Dijkstra algoritması, graf üzerinde tek bir düğümden diğer tüm düğümlere olan en kısa yolları hesaplamak için kullanılır. Bu durumda, function3 fonksiyonunu iki farklı şekilde optimize edebiliriz:
+
+a) İhtiyacımız olan sadece t değerine göre daha küçük olan yollar olduğundan, Floyd-Warshall algoritmasını kullanmaya devam edebiliriz, ancak algoritmayı sadece t değerine göre güncelleyebiliriz. İç içe üç döngüye ek olarak bir koşul ekleyerek, d[i][j] değerini t değerinden küçükse sadece güncelleyebiliriz. Bu şekilde, tüm çiftler arasındaki en kısa yolları hesaplamadan, sadece t değerine göre daha küçük olan yolları bulabiliriz. Bu optimize edilmiş versiyonda zaman karmaşıklığı yine O(n^3) olacaktır, ancak daha küçük değerlerle çalışacak ve hesaplama süresi azalacaktır.
+
+b) Grafın yapısı hakkında bazı ön bilgilere sahipsek, daha spesifik bir algoritma kullanabiliriz. Örneğin, graf düşük yoğunluklu bir graf ise ve çevrim bulunmuyorsa, Bellman-Ford algoritmasını kullanabiliriz. Bu algoritma, negatif ağırlıklara sahip kenarlarla başa çıkabilir ve t değerine göre daha küçük olan yolları bulmak için kullanılabilir. Bu durumda, zaman karmaşıklığı O(n^2) olacaktır ve daha hızlı bir çözüm elde edilecektir.
