@@ -1,0 +1,2 @@
+İlk kodumuzun zaman karmaşıklığı O(n^3)
+Yeni kodun zaman karmaşıklığı: O(size^3 + size log(size))
