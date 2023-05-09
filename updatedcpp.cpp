@@ -78,34 +78,29 @@ void generate(int a[], int size) {
     }
 }
 
+int compare(const void* a, const void* b) {
+    return (*(int*)a - *(int*)b);
+}
+
 void function1(int a[], int size) {
-    for (int i = 0; i < size - 1; i++) {
-        for (int j = 0; j < size - 1 - i; j++) {
-            if (a[j] > a[j + 1]) {
-                int tmp = a[j];
-                a[j] = a[j + 1];
-                a[j + 1] = tmp;
-            }
-        }
-    }
+    qsort(a, size, sizeof(int), compare);
 }
 
 int function2(int a[], int size) {
-    int t = 0, current_sum = 0, count=0;
+    int t = 0, current_sum = 0, count = 0;
     for (int i = 0; i < size; i++) {
-        if (current_sum + a[i] > 0) {
-            current_sum = current_sum + a[i];
-        }
-        else {
+        current_sum += a[i];
+        if (current_sum < 0) {
             current_sum = 0;
         }
-        if (current_sum > t) {
+        else if (current_sum > t) {
             t = current_sum;
             count++;
         }
     }
-    return t/count;
+    return t / count;
 }
+
 
 void function3(int g[][G_SIZE], int d[][G_SIZE], int size) {
     for (int i = 0; i < size; i++) {
@@ -133,6 +128,7 @@ void function3(int g[][G_SIZE], int d[][G_SIZE], int size) {
         }
     }
 }
+
 
 void print1(int a[], int size) {
     for (int i = 0; i < size; i++) {
