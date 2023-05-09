@@ -124,7 +124,7 @@ void function3(int g[][G_SIZE], int d[][G_SIZE], int size) {
                     d[i][k] + d[k][j] < d[i][j]) {
                     d[i][j] = d[i][k] + d[k][j];
                 }
-            }
+           }
         }
     }
 }
