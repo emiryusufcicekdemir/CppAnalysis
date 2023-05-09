@@ -1,0 +1,15 @@
+Bu kodun zaman karmaşıklığı : 
+
+generate fonksiyonunun zaman karmaşıklığı O(size)dir, çünkü döngü size kez çalışır ve her seferinde bir işlem yapar.
+
+function1 fonksiyonu, qsort işlevini çağırdığı için zaman karmaşıklığı O(size log(size))dir.
+
+function2 fonksiyonunun zaman karmaşıklığı O(size)'dır. Çünkü döngü size kez çalışır ve her seferinde bir işlem yapar.
+
+function3 fonksiyonunun zaman karmaşıklığı O(size^3)'dır. İki tane iç içe geçmiş üçlü döngü vardır ve her bir döngü size kez çalışır.
+
+print1, print2 ve print3 fonksiyonlarının zaman karmaşıklığı O(size^2)'dir. İki tane iç içe geçmiş döngü vardır ve her bir döngü size kez çalışır.
+
+Bunlara ek olarak, main fonksiyonunda generate, function1, function2 ve function3 fonksiyonları çağrılır. Dolayısıyla, bu fonksiyonların zaman karmaşıklıkları toplamı toplam zaman karmaşıklığıdır.
+
+Toplam zaman karmaşıklık: O(size^3 + size log(size))
