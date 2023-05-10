@@ -1,2 +1,4 @@
 İlk kodumuzun zaman karmaşıklığı O(n^3)
 Yeni kodun zaman karmaşıklığı: O(size^3 + size log(size))
+
+Çalışma süreleri ise yakınlık göstermekle beraber kodun yeni hali daha verimli olacaktır.
