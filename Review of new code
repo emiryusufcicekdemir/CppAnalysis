@@ -1,3 +1,4 @@
+(TR)
 Bu kodun zaman karmaşıklığı : 
 
 generate fonksiyonunun zaman karmaşıklığı O(size)dir, çünkü döngü size kez çalışır ve her seferinde bir işlem yapar.
@@ -13,3 +14,20 @@ print1, print2 ve print3 fonksiyonlarının zaman karmaşıklığı O(size^2)'di
 Bunlara ek olarak, main fonksiyonunda generate, function1, function2 ve function3 fonksiyonları çağrılır. Dolayısıyla, bu fonksiyonların zaman karmaşıklıkları toplamı toplam zaman karmaşıklığıdır.
 
 Toplam zaman karmaşıklık: O(size^3 + size log(size))
+
+(ENG)
+Time complexity of this code:
+
+The time complexity of the generate function is O(size) because the loop runs size times and one operation at a time.
+
+The time complexity is O(size log(size)) because function1 calls the qsort function.
+
+The time complexity of function2 is O(size). Because the loop runs you once and does one action at a time.
+
+The time complexity of function3 is O(size^3). There are two nested triple loops and each loop runs you once.
+
+The time complexity of print1, print2 and print3 is O(size^2). There are two nested loops and each loop runs you once.
+
+In addition to these, the functions generate, function1, function2 and function3 are called in the main function. So the sum of the time complexities of these functions is the total time complexity.
+
+Total time complexity: O(size^3 + size log(size))
