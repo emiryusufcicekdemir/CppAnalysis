@@ -1,3 +1,4 @@
+(TR)
 generate: Rastgele bir dizi oluşturur. Her eleman, MAX_W değeriyle sınırlanmış rastgele bir sayıdır.
 function1: Diziyi sıralar (küçükten büyüğe).
 function2: Dizi üzerinde bir işlem yapar ve bir sonuç döndürür. İşlem, dizinin ardışık alt dizilerinin toplamlarını hesaplar ve en büyük toplamı bulur. Bu toplamı, alt dizilerin sayısına böler ve sonucu döndürür.
@@ -22,3 +23,29 @@ Sonuç olarak zaman karmaşıklığı O(n^3) olur.
 a) İhtiyacımız olan sadece t değerine göre daha küçük olan yollar olduğundan, Floyd-Warshall algoritmasını kullanmaya devam edebiliriz, ancak algoritmayı sadece t değerine göre güncelleyebiliriz. İç içe üç döngüye ek olarak bir koşul ekleyerek, d[i][j] değerini t değerinden küçükse sadece güncelleyebiliriz. Bu şekilde, tüm çiftler arasındaki en kısa yolları hesaplamadan, sadece t değerine göre daha küçük olan yolları bulabiliriz. Bu optimize edilmiş versiyonda zaman karmaşıklığı yine O(n^3) olacaktır, ancak daha küçük değerlerle çalışacak ve hesaplama süresi azalacaktır.
 
 b) Grafın yapısı hakkında bazı ön bilgilere sahipsek, daha spesifik bir algoritma kullanabiliriz. Örneğin, graf düşük yoğunluklu bir graf ise ve çevrim bulunmuyorsa, Bellman-Ford algoritmasını kullanabiliriz. Bu algoritma, negatif ağırlıklara sahip kenarlarla başa çıkabilir ve t değerine göre daha küçük olan yolları bulmak için kullanılabilir. Bu durumda, zaman karmaşıklığı O(n^2) olacaktır ve daha hızlı bir çözüm elde edilecektir.
+
+(ENG)
+generate: Generates a random array. Each element is a random number bounded by the MAX_W value.
+function1: Sorts the array (from smallest to largest).
+function2: Performs an operation on the array and returns a result. The operation calculates the sums of consecutive subsequences of the array and finds the largest sum. Divide this sum by the number of substrings and return the result.
+function3: Takes a two-dimensional graph matrix and performs the shortest path calculations on the matrix using the Floyd-Warshall algorithm.
+Let's calculate the time complexity step by step:
+
+generate function: It has a fixed time complexity and is O(1).
+function1 function: Performs sorting using two nested loops. It compares with all other elements to find the correct position of each element. Therefore, in an array of n elements, it compares each element by n-1 elements, ie the total number of comparisons (n-1) + (n-2) + ... + 2 + 1 = n*(n-1)/2' is In this case, the time complexity of the function will be O(n^2).
+function2 function: It uses a single loop and performs constant operations at each step. Therefore, the time complexity of the function will be O(n).
+function3 function: Uses three nested loops. The first two loops visit each element of the matrix, while the third loop compares with other elements to calculate the shortest path. In this case, the time complexity of the function will be O(n^3).
+functions print1, print2, print3: Uses two nested loops to print all the elements of the array or matrix. In this case, the time complexity of the functions will be O(n^2).
+As a result the time complexity is O(n^3).
+
+Suggestion 1: Changing the sorting algorithm of function1. Instead of Bubble Sort, you can use a more efficient sorting algorithm, such as Quick Sort or Merge Sort. These algorithms will run faster since the time complexity is O(n log n).
+
+Suggestion 2: Optimizing the function function2. In current code you are using an inner loop for each subarray sum. Instead, you can use an algorithm like Kadane's Algorithm that finds the maximum sum of substrings with a single loop. This way you can optimize the time complexity to O(n).
+
+Suggestion 3: Optimizing the function function3. The current code uses the Floyd-Warshall algorithm, but we can see that while this algorithm does the shortest path calculations between all pairs, you actually only want to find paths that are smaller than the t value. In this case, you can improve performance by using a more specific algorithm. For example, with the Dijkstra algorithm, you can find paths that are smaller than the t value. With this change you can improve the time complexity to O(n^2 log n) or O(n^2 + m log m) (m: number of edges on the graph).
+
+Suggestion 4: We used Dijkstra algorithm instead of Floyd-Warshall in function3. However, Dijkstra's algorithm is used to calculate the shortest paths from a single node to all other nodes on the graph. In this case, we can optimize function3 in two different ways:
+
+a) Since we only need paths that are smaller than t, we can continue to use the Floyd-Warshall algorithm, but only update the algorithm based on the t value. By adding an additional condition to the three nested loops, we can only update d[i][j] if it is less than t. In this way, we can only find paths smaller than t without calculating the shortest paths between all pairs. In this optimized version the time complexity will still be O(n^3), but it will work with smaller values and the computation time will be reduced.
+
+b) If we have some preliminary information about the structure of the graph, we can use a more specific algorithm. For example, if the graph is a low density graph and there are no cycles, we can use the Bellman-Ford algorithm. This algorithm can deal with edges with negative weights and can be used to find paths smaller than t. In this case, the time complexity will be O(n^2) and a faster solution will be obtained.
