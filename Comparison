@@ -1,4 +1,11 @@
+(TR)
 İlk kodumuzun zaman karmaşıklığı O(n^3)
 Yeni kodun zaman karmaşıklığı: O(size^3 + size log(size))
 
 Çalışma süreleri ise yakınlık göstermekle beraber kodun yeni hali daha verimli olacaktır.
+
+(ENG)
+The time complexity of our first code is O(n^3)
+Time complexity of new code: O(size^3 + size log(size))
+
+Although the run times are close, the new version of the code will be more efficient.
